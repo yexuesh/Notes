@@ -1,0 +1,150 @@
+# 初始化，退出
+pygame.init()
+pygame.exit()
+
+# 颜色
+pygame.Color(r,g,b) # 使用 RGB(红绿蓝) 模式
+
+# 字体
+pygame.font
+        一.
+        1.pygame.font.Font('文件名.ttf',大小) # 文件名为None时，系统默认字体
+
+        2.pygame.font.SysFont('字体名',大小)
+          pygame.font.get_fonts() # 返回系统的字体列表
+        二.
+        1.要先创建字体对象
+        # pygame.font.SysFont(字体名称，大写)
+        font = pygame.font.SysFont("Verdana", 60)
+        2.为选择的字体创建图形
+        # render()函数
+                            // (内容，是否抗锯齿，颜色)
+        game_over = font.render("Game Over", True, BLACK)
+        3.调用 blit()
+
+# 图像
+pygame.image.load('load.png')
+
+# 获取位置
+Surface.get_rect(center=(x,y)) # center 中心 ,也可不提供
+
+# 设置背景
+1.加载图像
+background = pygame.image.load("background.png")
+2.调用 blit()，且要在游戏循环中
+DISPLAY.blit(background, (0,0))
+
+# 声音
+Pygame Mixer 库
+音乐
+pygame.mixer.music.load('文件名.') # 加载音乐文件
+pygame.mixer.music.play(0) # 播放 // 传入0只播放一次，-1无限制，int整数次
+pygame.mixer.music.queue('文件名.mp3','文件名.mp3') # 播放队列
+pygame.mixer.music.stop() # 停止 再次调用 play() 时从头
+pygame.mixer.music.pause() # 暂停
+pygame.mixer.music.unpause() # 恢复播放
+音效
+1.创建对象
+sound = pygame.mixer.Sound('文件名.')
+2.播放
+sound.play()
+或者
+pygame.mixer.Sound.play(sound)
+
+# 显示模块
+pygame.display:
+    pygame.display.update # 更新
+    pygame.set_mode((高度，宽度)) # 创建窗口
+
+# 表面创建相关函数
+    # 1.创建 Surface
+    surf = pygame.Surface((50, 100)  # width(宽度), length(长度)
+    # 2.填充函数 .fill()
+    mySurface1.fill( (0, 255, 0) )  # Green
+    # 3.传输函数 .blit()
+    display.blit(blit_surface,(x,y))
+    # 4.用于创建另一个具有相同颜色、透明度等的 Surface 对象的精确副本
+    pygame.Surface.copy()
+    # 5.返回 Surface 对象的宽度和高度
+    pygame.Surface.get_size()
+
+    # 要更新 pygame.update()
+
+# 更新
+pygeme.update()
+
+#　事件模块
+pygame.locals
+
+# 事件
+pygame.event.get() # 返回 pygame.event.Event 对象列表，用 type 属性
+    # 自定义事件
+    调用 调用了 pygame.USEREVENT
+    INC_SPEED = pygame.USEREVENT + 1
+    # 每隔1000毫米(一秒)调用一次
+    pygame.time.set_timer(INC_SPEED, 1000) # set_timer(eventid 事件id, milliseconds 毫秒, once 次数) -> None
+
+# 按下的键
+pygame.key.get_pressed()[键名]
+
+
+# 绘图函数 draw
+::::::::::::::::::::::::::::::::::::::::::::::
+# pygame.draw.polygon(surface, color, pointlist, width)
+pygame.draw.line(surface, color, start_point, end_point, width) # 线
+# pygame.draw.lines(surface, color, closed, pointlist, width)
+pygame.draw.circle(surface, color, center_point, radius, width) # 圆
+# pygame.draw.ellipse(surface, color, bounding_rectangle, width)
+pygame.draw.rect(surface, color, (x,y,宽,高), width) # 矩形
+
+    surface # 表面
+    color # 颜色
+    pointlist # 包含坐标或"点"的   元组(对于矩形，您将传递一个包含 4 个坐标对的元组。)
+    width # 可选参数，用于确定形状轮廓的大小，整数值
+    (start_point) (end_point) # 一组坐标，从start_point,开始，end_point结束。
+    center_point # 圆的原点
+::::::::::::::::::::::::::::::::::::::::::::::
+
+# 设置帧数
+FPS = 60
+FramePerSec = pygame.time.Clock()
+FramePerSec.tick(FPS)
+
+
+# pygame 的类
+   # pygame.spritem 中的
+       # pygame.sprite.Sprite()  精灵类
+       精灵有属性 image,rect
+       class Player(pygame.sprite.Sprite):
+          def __init__(self):
+              super().__init__()
+              self.image = pygame.image.load("download.png")
+              self.surf = pygame.Surface((50, 100))
+              # get_rect()：获取位置
+              self.rect = self.surf.get_rect()
+              # get_rect() 返回的对象有
+              属性:
+              .left .....
+              方法:
+              .move_ip(x方向移动距离,y方向移动距离)
+              .kill() 删除
+
+        # pygame.sprite.Group()  建立存放精灵的组
+        方法 .add 添加
+        enemies = pygame.sprite.Group()
+        enemies.add(E1)
+
+# 检测碰撞
+1.sprite1.rect.colliderect(sprite2.rect)
+如果两个对象的矩形重叠，返回 True，否则返回 False。
+2.pygame.sprite.spritecollideany()函数
+参数:
+第一个必须是 Sprite
+第二个必须是 Sprite 组
+3.pygame.sprite.spritecollide(sprite, group, dokill, collided = None)  #  精灵与组
+该方法返回与 sprite 发生碰撞的 group 中的 sprite 对象，dokill 为 bool(是否杀死group 中发生碰撞的 sprite)
+4.pygame.sprite.groupcollide(组1,组2[,True,True]) # 组碰撞
+第三个参数：是否 kill() 组1 中碰撞的精灵sprite
+第四个参数：是否 kill() 组2 中碰撞的精灵sprite
+返回值是一个字典的形式，键是 group 中碰撞的精灵 sprite
+其中 group1 的碰撞精灵是它们的键，值是它们相交的 group2 精灵的列表

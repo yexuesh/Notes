@@ -1,0 +1,20 @@
+能访问剪贴板的文字内容
+复制剪贴板里的内容、向剪贴板写入内容
+
+pip install pyperclip
+在windows里没有额外依赖。
+
+在mac里需要系统里自带的pbcopy和pbpaste 命令。
+
+在linux里需要系统的xclip或xsel 命令，
+没有的话要用
+sudo apt-get install xclip
+或
+sudo apt-get install xsel安装
+（注意：xsel 有时可能不工作）
+。否则需要在linux里安装gtk 或PyQt4 模块。
+
+
+pyperclip.paste() 获取剪贴板内容。
+pyperclip.copy()  向剪贴板写入。
+然后可以使用pyperclip.paste或者ctrl+v检验剪贴板内容是否和写入的一样。

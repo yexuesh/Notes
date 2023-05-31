@@ -1,0 +1,13 @@
+# 对于二进制数据
+1. iter_content()
+iter_content(chunk_size=1 , decode_unicode=False)
+
+chunk_size 必须是 int 或 None 类型。
+None 的值将根据stream的值发挥不同的作用。
+    ( stream设置: request.get(url,stream=True) )
+    1>.stream=True   任何大小都读取数据。
+    2>.stream=False  数据作为单个块返回。
+如果 decode_unicode=True，则内容将基于响应使用最佳编码进行解码。
+
+# 编码问题
+result.encoding = 'utf-8'

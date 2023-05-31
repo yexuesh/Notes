@@ -1,0 +1,73 @@
+```c++
+BOOL OpenClipboard(所有者窗口);  // 打开   剪贴板
+BOOL EmptyClipboard(); // 清空   剪贴板
+HANDLE SetClipboardData(类型, 内存块句柄) // 设置   剪贴板内容 类型:Unicode文本CF_UNICODETEXT
+HANDLE GetClipboardData(类型); // 返回包含剪贴板内容的内存块句柄
+BOOL CloseClipboard(); // 关闭  剪贴板
+
+HGLOBAL GlobalAlloc(分配选项, 分配内存大小) 		分配全局内存并返回它的句柄或指针
+HGLOBAL GlobalFree(内存块句柄) 		释放全局内存
+SIZE_T GlobalSize(内存块句柄) 		返回全局内存的大小
+LPVOID GlobalLock(内存块句柄) 		获得全局内存所有权，并返回指向全局内存的指针
+BOOL GlobalUnlock(内存块句柄) 		释放全局内存所有权
+GlobalAlloc		分配选项如果是GHND，则分配可变内存，清零内存并返回全局内存句柄，需要GlobalLock以获取指针
+GlobalAlloc		分配选项如果是GPTR，则分配固定内存，清零内存并直接返回指针
+```
+
+===========================================================================================
+常用的剪贴板数据类型（还包括很多其它类型，详情请参考MSDN相关内容）：
+CF_TEXT 一段ANSI文本
+CF_OEMTEXT 一段DOS文本
+CF_UNICODETEXT 一段Unicode文本
+CF_LOCALE 区域标识
+CF_BITMAP 位图
+CF_DIB 设备无关位图
+
+===========================================================================================
+需要使用Win32内存块与剪贴板交互，常用Win32内存块操作函数（另有LocalAlloc等，功能完全相同）：
+HGLOBAL GlobalAlloc(分配选项, 分配内存大小) 		分配全局内存并返回它的句柄或指针
+HGLOBAL GlobalFree(内存块句柄) 		释放全局内存
+SIZE_T GlobalSize(内存块句柄) 		返回全局内存的大小
+LPVOID GlobalLock(内存块句柄) 		获得全局内存所有权，并返回指向全局内存的指针
+BOOL GlobalUnlock(内存块句柄) 		释放全局内存所有权
+GlobalAlloc		分配选项如果是GHND，则分配可变内存，清零内存并返回全局内存句柄，需要GlobalLock以获取指针
+GlobalAlloc		分配选项如果是GPTR，则分配固定内存，清零内存并直接返回指针
+
+===========================================================================================
+复制（向剪贴板写内容）操作流程：
+创建一块内存块
+1.分配一个适当大小的内存块（GlobalAlloc，GHND）
+2.锁定它并获得所有权（GlobalLock）
+3.将要复制的内容拷贝到该内存
+4.释放内存的所有权（GlobalUnlock）
+**将剪贴板内容设置为它
+5.打开剪贴板（OpenClipboard）
+6.清空剪贴板（EmptyClipboard）
+7.将该内存块设为剪贴板的数据（SetClipboardData）
+8.关闭剪贴板（CloseClipboard）
+分配内存块 -> 获取所有权 -> 复制内容 -> 释放所有权 -> 打开~ -> 清空~ -> 设置数据 -> 关闭~
+
+HGLOBAL GlobalAlloc(分配选项, 分配内存大小)  --> 分配内存块 
+LPVOID GlobalLock(内存块句柄)                          --> 获取所有权 
+复制内容                                                                --> 复制内容
+BOOL GlobalUnlock(内存块句柄)                          --> 释放所有权
+BOOL OpenClipboard(所有者窗口)                       --> 打开剪切板
+BOOL EmptyClipboard();                                      --> 清空剪切板
+HANDLE SetClipboardData(类型, 内存块句柄)    --> 设置数据
+BOOL CloseClipboard()                                        --> 关闭剪切板
+
+===========================================================================================
+粘贴（读剪贴板内容）操作流程：
+1.打开剪贴板（OpenClipboard）
+2.获取包含剪贴板内容的内存块句柄（GetClipboardData）
+3.锁定该内存块并获得指针（GlobalLock）
+4.读取该内存的内容
+5.关闭剪贴板（CloseClipboard）**
+
+打开剪切板 -> 获取句柄 -> 锁定内存块 -> 读取内容 -> 关闭剪切板
+
+BOOL OpenClipboard(所有者窗口)   -> 打开  剪切板
+HANDLE GetClipboardData(类型)    -> 获取  包含剪切板内容的 数据块
+LPVOID GlobalLock(内存块句柄)      -> 锁定   内存块
+读取内容                                            -> 读取   内容
+BOOL CloseClipboard()                     --> 关闭  剪切板

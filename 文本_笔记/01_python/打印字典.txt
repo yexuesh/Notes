@@ -1,0 +1,7 @@
+print(json.dumps(dct_arr, sort_keys=False, indent=4))
+
+另一种打印字典的方法是使用 yaml 模块的 dump() 函数。
+它的作用与 json.dumps() 函数相同，但使用的是 YAML 格式而不是 JSON。
+首先，使用 pip 安装 YAML 模块。
+pip install pyyaml
+print(yaml.dump(dct_arr, sort_keys=False, default_flow_style=False))

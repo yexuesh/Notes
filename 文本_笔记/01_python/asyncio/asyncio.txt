@@ -1,0 +1,64 @@
+```python
+import asyncio
+asyncio.create_task(coro, *, name=None)  # 将 coro 协程 封装为一个 Task 并调度其执行。返回 Task 对象
+
+asyncio.run(coro, *, debug=False) # 执行 coroutine coro 并返回结果
+"""运行传入的协程，负责管理 asyncio 事件循环，终结异步生成器，并关闭线程池。"""
+
+coroutine asyncio.sleep(delay, result=None, *, loop=None)
+"""
+阻塞 delay 指定的秒数。sleep() 总是会挂起当前任务，以允许其他任务运行。
+如果指定了 result，则当协程完成时将其返回给调用者。
+将 delay 设为 0 将提供一个经优化的路径以允许其他任务运行。 这可供长期间运行的函数使用以避免在函数调用的全过程中阻塞事件循环。
+"""
+
+awaitable asyncio.gather(*aws, loop=None, return_exceptions=False)
+"""
+并发 运行 aws 序列中的 可等待对象。
+如果 aws 中的某个可等待对象为协程，它将自动被作为一个任务调度。
+如果所有可等待对象都成功完成，结果将是一个由所有返回值聚合而成的列表。结果值的顺序与 aws 中可等待对象的顺序一致。
+如果 return_exceptions 为 False (默认)，所引发的首个异常会立即传播给等待 gather() 的任务。aws 序列中的其他可等待对象 不会被取消 并将继续运行。
+如果 return_exceptions 为 True，异常会和成功的结果一样处理，并聚合至结果列表。
+如果 gather() 被取消，所有被提交 (尚未完成) 的可等待对象也会 被取消。
+如果 aws 序列中的任一 Task 或 Future 对象 被取消，它将被当作引发了 CancelledError 一样处理 -- 在此情况下 gather() 调用 不会 被取消。这是为了防止一个已提交的 Task/Future 被取消导致其他 Tasks/Future 也被取消。
+"""
+
+awaitable asyncio.shield(aw, *, loop=None)
+"""
+保护一个 可等待对象 防止其被 取消。
+如果 aw 是一个协程，它将自动被作为任务调度。
+"""
+
+coroutine asyncio.wait_for(aw, timeout, *, loop=None)
+"""
+等待 aw 可等待对象 完成，指定 timeout 秒数后超时。
+如果 aw 是一个协程，它将自动被作为任务调度
+"""
+
+coroutine asyncio.wait(aws, *, loop=None, timeout=None, return_when=ALL_COMPLETED)
+"""
+并发地运行 aws 可迭代对象中的 可等待对象 并进入阻塞状态直到满足 return_when 所指定的条件。
+aws 可迭代对象必须不为空。
+返回两个 Task/Future 集合: (done, pending)。
+
+@return_when
+常数                          描述
+FIRST_COMPLETED     在任意可等待对象结束或取消时返回。
+FIRST_EXCEPTION     在任意可等待对象因引发异常而结束时返回。当没有引发任何异常时它就相当于 ALL_COMPLETED。
+ALL_COMPLETED       在所有可等待对象结束或取消时返回。
+"""
+
+asyncio.as_completed(aws, *, loop=None, timeout=None)
+"""
+并发地运行 aws 可迭代对象中的 可等待对象。 返回一个协程的迭代器。 所返回的每个协程可被等待以从剩余的可等待对象的可迭代对象中获得最早的下一个结果。
+如果在所有 Future 对象完成前发生超时则将引发 asyncio.TimeoutError。
+"""
+
+coroutine asyncio.to_thread(func, /, *args, **kwargs)
+"""
+在不同的线程中异步地运行函数 func。
+向此函数提供的任何 *args 和 **kwargs 会被直接传给 func。 并且，当前 contextvars.Context 会被传播，允许在不同的线程中访问来自事件循环的上下文变量。
+返回一个可被等待以获取 func 的最终结果的协程。
+"""
+```
+

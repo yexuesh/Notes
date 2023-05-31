@@ -1,0 +1,13 @@
+```bash
+pip index versions [:packageName:]  # 查看包的所有版本
+pip install [:packageName:]==[:version:]  # 下载指定版本
+pip install --upgrade [:packageName:]  # 更新指定包
+pip show [:packageName:]  # 查看指定包的信息  (版本)
+pip list # 查看已安装的所有包
+```
+
+查看当前pip源
+
+```bash
+pip config list
+```

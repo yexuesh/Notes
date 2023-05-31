@@ -1,0 +1,89 @@
+# 一. 单个请求
+
+```python
+import ahttp
+
+url = ""
+req = ahttp.get(url)  # 构建请求
+res = req.run()  # 执行请求
+print(res.text)
+```
+
+# 二. 多个请求
+
+## 1. 不使用session
+
+```python
+urls = []
+reqs = [ahttp.get(url) for url in urls]  # 构建请求
+responses = ahttp.run(reqs)  # 运行
+print(resps[0].text)  # 查看第一个请求
+```
+
+## 2. 使用session
+
+```python
+urls = []
+session = ahttp.Session()  # 构建session  *-该步骤为添加的-*
+reqs = [session.get(url) for url in urls]  # 构建请求  *-该步骤 ahttp.get(url) -> session.get(url)-*
+responses = ahttp.run(reqs)  # 运行
+print(resps[0].text)  # 查看第一个请求
+```
+
+# 三. 有序返回
+
+```python
+resps = ahttp.run(reqs, order=True)  # 有序返回 
+```
+
+# 四. 属性
+
+```python
+resp.url
+resp.method
+resp.content
+```
+
+# 五. 代理
+
+```python
+# 无验证代理
+proxy = "http://some.proxy.com"
+...
+tasks = [ahttp(url, proxy = proxy), ...]
+
+# 授权代理
+proxy = "http://some.proxy.com"
+...
+tasks = [ahttp(url, proxy = proxy, proxy_auth=proxy_auth), ...]	
+# 或
+tasks = [ahttp(url, proxy="http://user:pass@some.proxy.com"), ...]	
+
+# socks代理
+proxy = {
+    "http":"socks5://127.0.0.1:1080",
+    "https":"socks5h://127.0.0.1:1080"
+}
+ahttp.get(url, proxy=proxy)
+
+```
+
+# 六. 其他
+
+```python
+results = ahttp.run(tasks, pool = 100)  # 将连接池改为100
+
+# 添加回调函数 以指定当前任务完成执行的函数
+def callback(ahttp_response):
+	ahttp_response # <AhttpResponse [status 200]>
+	ahttp_response.status # 200
+...
+tasks = [ahttp.get(url, callback = callback), ...]
+
+# 设置超时
+task = ahttp.get(url,..., timeout=300)  # timeout 默认300s
+
+```
+
+
+

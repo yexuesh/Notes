@@ -1,0 +1,69 @@
+## 添加全局宏定义
+
+通过命令`add_definitions`可以添加全局的宏定义，在源码中就可以通过判断不同的宏定义实现相应的代码逻辑。用法如下：
+
+```cmake
+add_definitions(-DDEBUG -DREAL_COOL_ENGINEER)
+```
+
+## 添加include目录
+
+通过命令`include_directories`来设置头文件的搜索目录，比如：
+
+```cmake
+include_directories(src/c)
+```
+
+## add_executable
+
+```cmake
+add_executable(project_name test.cpp)
+```
+
+## add_library
+
+```cmake
+add_library(${PROJECT_NAME} ${SRCS})
+```
+
+## add_subdirectory
+
+add_subdirectory¶
+向生成中添加子目录。
+add_subdirectory（source_dir[binary_dir][EXCLUDE_FROM_ALL][SYSTEM]）
+向生成中添加子目录。source_dir指定源CMakeLists.txt和代码文件所在的目录。如果它是相对路径，将根据当前目录（典型用法）进行评估，但也可能是绝对路径。binary_dir指定放置输出文件的目录。如果它是相对路径，将根据当前输出目录进行计算，但也可能是绝对路径。如果未指定binary_dir，将在展开任何相对路径之前使用source_dir的值（典型用法）。指定源目录中的CMakeLists.txt文件将由CMake立即处理，然后在当前输入文件中继续处理。
+如果提供了EXCLUDE_FROM_ALL参数，则默认情况下，子目录中的目标不会包含在父目录的ALL目标中，并且会从IDE项目文件中排除。用户必须在子目录中显式构建目标。这是为了在子目录包含项目的一个单独部分（有用但不必要）时使用，例如一组示例。通常，子目录应该包含自己的project（）命令调用，以便在子目录中生成完整的构建系统（例如VisualStudioIDE解决方案文件）。请注意，目标间依赖关系取代了此排除。如果父项目生成的目标依赖于子目录中的目标，则被依赖的目标将包含在父项目生成系统中，以满足依赖性。
+3.25版本中的新功能：如果提供SYSTEM参数，子目录的SYSTEM目录属性将设置为true。此属性用于初始化SYSTEM属性
+
+## find_package
+
+```cmake
+find_package(OpenCV REQUIRED)
+```
+
+version和EXACT: 都是可选的，version指定的是版本，如果指定就必须检查找到的包的版本是否和version兼容。如果指定EXACT则表示必须完全匹配的版本而不是兼容版本就可以。
+
+**QUIET** 可选字段，表示如果查找失败，不会在屏幕进行输出（但是如果指定了REQUIRED字段，则QUIET无效，仍然会输出查找失败提示语）。
+
+**REQUIRED** 可选字段。一定要找到包，找不到的话就立即停止cmake。
+					而如果不指定REQUIRED则cmake会继续执行。
+
+**OPTIONAL_COMPONENTS**：可选的模块，找不到也不会让cmake停止执行。
+
+**COMPONENTS** 可选字段，表示查找的包中必须要找到的组件(components)，如果有任何一个找不到就算失败，类似于REQUIRED，导致cmake停止执行。上面的例子中find_package( PCL REQUIRED COMPONENT common io )我们就利用了该关键字寻找了common和io包。
+
+**MODULE** 可选字段。前面提到说“如果Module模式查找失败则回退到Config模式进行查找”，但是假如设定了MODULE 选项，那么就只在Module模式查找，如果Module模式下查找失败并不回落到Config模式查找。
+
+**CONFIG** 可选字段。直接在Config模式中查找。下文会介绍什么是Moudule模式什么是Config模式。
+
+## target_link_libraries()
+
+```cmake
+target_link_libraries(untitled PRIVATE ${OpenCV_LIBS})
+```
+
+PUBLIC 在public后面的库会被Link到你的target中，并且里面的符号也会被导出，提供给第三方使用。
+
+PRIVATE 在private后面的库仅被link到你的target中，并且终结掉，第三方不能感知你调了啥库
+
+INTERFACE 在interface后面引入的库不会被链接到你的target中，只会导出符号

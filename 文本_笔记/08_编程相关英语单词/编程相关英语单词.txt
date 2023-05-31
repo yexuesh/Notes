@@ -1,0 +1,68 @@
+1.enemy(enemies-)  敌人
+2.screen   屏幕
+3.caption  标题
+4.center   中心，居中
+5.pressed  按下
+6.user event 用户事件
+7.collide  碰撞
+8.frame per sec  每秒帧数
+9.frame  框架
+10.per  每
+11.score  得分，分数
+12.global 全局变量
+13.queue  队列
+13.mixer  声音(或图像)混合器
+14.acceleration  加速度
+15.friction  摩擦
+16.velocity  速度
+17.suffix  后缀名
+18.repeat  重复
+19.prev  上
+20.Frame Per Sec  每秒帧数
+21.mspaint.exe  windows 画图
+22.pressed  按下
+23.sign in  登录
+24.sign out  注册
+25.display  显示
+26.platform  平台
+27.Vector  矢量
+28.x/y axis  x或y轴
+29.position  位置
+30.create  创造
+31.check  检查
+32.element 要素
+33.support  支持
+34.expected  预期
+35.conditions  条件
+36.source  源码;来源
+37.Session  会话
+38.info  信息
+39.Session info  会话信息
+40.chains  链
+41.action  行为;行动
+42.action chains  作用链
+43.perform  执行
+44.frequency  频率
+45.confirm  确认
+46.Button  按钮
+47.alert  警告;警觉的
+48.until  直到
+49.presence  出现;存在
+50.maximize  最大化
+51.structure  构造;结构
+52.analysis  解析
+53.composite  合成;混合成的
+54.count  计数
+55.async create task  异步创建任务
+56.async 异步
+57.create  创造
+58.task  任务
+59.able  可...的对象;能够的
+60.delay  延迟
+61.difference 差
+62.leap year 闰年
+63.Total month 总月份
+64.Documents  文件
+65.relate  联系，相关
+66.navigate 导航
+67.asset  资源

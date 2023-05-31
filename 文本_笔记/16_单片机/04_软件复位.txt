@@ -1,0 +1,7 @@
+ISP_CONTR: ISP/IAP 控制寄存器
+	ISPEN: ISP/IAP功能控制位
+	       =0禁止，=1允许: 读/写/擦除 Data 				       Flash/EEPROM。
+	SWBS: 选择启动区
+	SWRST: =0不操作，=1产生软件系统复位，硬件自动清零
+	
+	 

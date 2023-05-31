@@ -1,0 +1,3 @@
+1. >> error: member access into incomplete type 'QMouseEvent'
+   >> 错误：对不完整类型“QMouseEvent”的成员访问
+   >> 未包含头文件

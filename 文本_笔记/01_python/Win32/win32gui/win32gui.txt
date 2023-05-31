@@ -1,0 +1,29 @@
+# win32gui.EnumWindows(Callback, extra)
+
+```python
+# @函数功能: 遍历顶层所有窗口, 直到遍历完全 或 Callback 返回 False
+
+def _MyCallback(hwnd, extra: dict):
+	print("传递到callback函数的 句柄参数: ", hwnd)
+    print("由 win32gui.EnumWindows(Callback, extra)的第二个参数 传递到 callback函数的 额外参数:", extra)
+    
+    hwnd_hex = hex(hwnd)  # 需要将hwnd转化为16进制
+    win32gui.GetClassName(hwnd_hex)  # 通过句柄获取窗口类名
+    win32gui.GetWindowText(hwnd_hex)  # 通过句柄获取窗口标题
+    dict["hwnd_hex"] = hwnd_hex
+    ....
+
+extra = {}
+win32gui.EnumWindows(_MyCallback, extra)
+```
+
+# win32gui.GetDC(hwnd) 
+
+```python
+hwnd = 0x380a68
+HDC = win32gui.GetDC(hwnd)  # 获取窗口的设备上下文
+leftTop = (0, 0) right_bottom = (100, 100) 
+win32gui.Rectangle(HDC, leftTop[0], leftTop[1], right_bottom[0], right_bottom[1])  # 在此设备上绘制矩形
+win32gui.ReleaseDC(HDC, hwnd)  # 释放窗口的设备上下文
+```
+

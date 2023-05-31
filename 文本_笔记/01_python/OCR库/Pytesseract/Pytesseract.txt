@@ -1,0 +1,137 @@
+# Tesseract Ocr文字识别
+
+## 环境配置
+
+Tesseract的OCR引擎最先由HP实验室于1985年开始研发，至1995年时已经成为OCR业内最准确的三款识别引擎之一。2005年，Tesseract由美国内华达州信息技术研究所获得，并求诸于Google对Tesseract进行改进、消除Bug、优化工作。Tesseract目前已作为开源项目发布在Google Project.
+
+一、安装python模块
+```bash
+pip3 install pytesseract
+```
+
+二、安装tesseract orc
+下载地址：https://github.com/UB-Mannheim/tesseract/wiki 点击“tesseract-ocr-w64-setup-v4.0.0-beta.1.20180414.exe”下载安装。
+
+注意：安装的时候选中中文包。
+
+本人安装目录：C:\Users\Administrator\AppData\Local\Tesseract-OCR
+
+使用命令，查看版本号和支持语言：
+
+```bash
+cd C:\Users\Administrator\AppData\Local\Tesseract-OCR
+tesseract -v
+tesseract --list-langs　　#查看Tesseract-OCR支持语言
+```
+
+三、配置tesseract运行文件
+
+C:\Python36\Lib\site-packages\pytesseract\pytesseract.py
+找到文件：
+
+```bash
+tesseract_cmd = 'tesseract'
+```
+
+修改为：
+
+```bash
+tesseract_cmd = 'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
+```
+
+四、代码识别
+
+```python
+from PIL import Image
+import pytesseract
+
+path = "img\\text-img.png"
+
+text = pytesseract.image_to_string(Image.open(path), lang='chi_sim')
+print(text)
+```
+
+作为非常优秀的Ocr识别库，tesseract当然可以训练自己的数据模型，从而达到为我所用的目的，后续文章会介绍如何训练自己的文字识别库。
+
+## 简单函数调用
+
+```python
+image_to_boxes()  # 方法返回识别到的字符及字符边框信息
+image_to_data()  # 返回单词及单词位置信息
+```
+
+### config
+
+#### -l
+
+cin_sim   简体中文
+
+eng         英文
+
+#### --psm
+
+tesseract有13种图片分割模式（page segmentation mode，psm）：
+
+- 0 —  方向及语言检测
+- 1 —  自动图片分割
+- 2 —  自动图片分割，没有OSD和OCR
+- 3 —  (Default) 完全的自动图片分割，没有OSD
+- 4 —  假设有一列不同大小的文本
+- 5 —  假设有一个垂直对齐的文本块
+- 6 —  假设有一个对齐的文本块
+- 7 —  图片为单行文本
+- 8 —  图片为单词
+- 9 —  图片为圆形的单词
+- 10— 图片为单个字符
+- 11— 稀疏文本。查找尽可能多的文本，没有特定的顺序。
+- 12— OSD稀疏文本
+- 13— 原始行。将图像视为单个文本行。
+
+
+
+- 0 — Orientation and script detection (OSD) only. 方向及语言检测（Orientation and script detection，OSD)
+- 1 — Automatic page segmentation with OSD. 自动图片分割
+- 2 — Automatic page segmentation, but no OSD, or OCR. 自动图片分割，没有OSD和OCR
+- 3 — Fully automatic page segmentation, but no OSD. (Default) 完全的自动图片分割，没有OSD
+- 4 — Assume a single column of text of variable sizes. 假设有一列不同大小的文本
+- 5 — Assume a single uniform block of vertically aligned text. 假设有一个垂直对齐的文本块
+- 6 — Assume a single uniform block of text. 假设有一个对齐的文本块
+- 7 — Treat the image as a single text line. 图片为单行文本
+- 8 — Treat the image as a single word. 图片为单词
+- 9 — Treat the image as a single word in a circle. 图片为圆形的单词
+- 10 — Treat the image as a single character. 图片为单个字符
+- 11 — Sparse text. Find as much text as possible in no particular order. 稀疏文本。查找尽可能多的文本，没有特定的顺序。
+- 12 — Sparse text with OSD. OSD稀疏文本
+- 13 — Raw line. Treat the image as a single text line, bypassing hacks that are Tesseract-specific. 原始行。将图像视为单个文本行。
+
+#### --oem
+
+有4种OCR引擎模式：
+
+-0-仅限传统发动机。
+-1-仅神经网络LSTM引擎。
+-2-Legacy+LSTM发动机。
+-3-默认值，基于可用内容
+
+- 0 — 仅传统引擎.                       Legacy engine only.
+- 1 — 仅神经网络LSTM引擎.      Neural nets LSTM engine only.
+- 2 — Legacy+LSTM引擎.           Legacy + LSTM engines.
+- 3 — 默认值，基于可用内容.      Default, based on what is available.
+
+#### --osd
+
+方向及语言检测OSD
+
+### 其他
+
+min_characters_to_try   最小字符数
+
+tessedit_char_whitelist  白名单.  只检测特定的字符
+
+tessedit_char_blacklist  黑名单.  不检测特定字符
+
+https://zhuanlan.zhihu.com/p/448253254
+
+## 模型训练
+
+https://blog.csdn.net/juzicode00/article/details/121538270

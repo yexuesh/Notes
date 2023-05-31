@@ -1,0 +1,7 @@
+@staticmethod  # 静态
+def name():
+	pass
+
+@classmethod  # 类方法
+def name(cls):
+	pass

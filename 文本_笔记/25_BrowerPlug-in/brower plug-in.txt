@@ -1,0 +1,33 @@
+# 目录结构
+
+JavaScript Hook
+    ├─ manifest.json            // 配置文件，文件名不可更改
+    ├─ icons.png                 // 图标
+    └─ javascript_hook.js   // Hook 脚本，文件名顺便取
+
+# manifest.json
+
+```json
+{
+    "name": "JavaScript Hook",          // 插件名称
+    "version": "1.0",                   // 插件版本
+    "description": "JavaScript Hook",   // 插件描述
+    "manifest_version": 2,              // 清单版本，必须是2或者3
+    "icons": {                          // 插件图标
+  		"16": "/icons.png",             // 图标路径，插件图标不同尺寸也可以是同一张图
+  		"48": "/icons.png",
+  		"128": "/icons.png"
+ 	},
+    "content_scripts": [{
+        "matches": ["<all_urls>"],      // 匹配所有地址
+        "js": ["javascript_hook.js"],   // 注入的代码文件名和路径，如果有多个，则依次注入
+        "all_frames": true,             // 允许将内容脚本嵌入页面的所有框架中
+        "permissions": ["tabs"],        // 权限申请，tabs 表示标签
+        "run_at": "document_start"      // 代码注入的时间
+    }]
+}
+```
+
+- manifest_version：配置清单版本，目前支持 2 和 3，2 将会在将来被逐步淘汰，将来也可能推出 4 或者更高版本。可以在官网查看 **Manifest V2**[4] 和 **Manifest V3**[5] 的区别，3 有更高的隐私安全要求，这里推荐使用 2。
+- content_scripts：Chrome 插件中向页面注入脚本的一种形式，包括地址匹配（支持正则表达式），要注入的 JS、CSS 脚本，代码注入的时间（建议 document_start    ，网页开始加载时就注入）等。
+

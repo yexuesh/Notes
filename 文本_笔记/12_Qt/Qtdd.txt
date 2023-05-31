@@ -1,0 +1,16 @@
+1.// 取消窗口边框
+setWindowFlags(Qt::FramelessWindowHint);
+
+2.// 设置大小位置
+this -> setGeometry(Window_x, Window_y, Window_width, Window_height);
+
+3.//如果隐藏边框后还想要把该界面至于其他界面的顶层，可以使用以下代码：
+this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::WindowStaysOnTopHint |Qt::FramelessWindowHint);
+
+4.// 隐藏任务栏中的图标：
+this->setWindowFlags(Qt::Tool);
+
+5.QMouseEvent* e;
+  e->globalPos();
+Returns the global position of the mouse cursor at the time of the event.
+返回事件发生时鼠标光标的全局位置。

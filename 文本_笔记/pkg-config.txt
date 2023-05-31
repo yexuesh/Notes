@@ -1,0 +1,47 @@
+# pkg-config   Command
+
+```sh
+pkg-config [NAME] --cflags # 查看头文件信息
+pkg-config [NAME] --libs # 查看库信息
+pkg-config --list-all # 查看pkg-config的所有模块信息。
+```
+
+# 如何添加自己的pc文件
+
+\1. 把你的pc文件，直接放到/usr/lib/…默认路径下。
+\2. 把你的pc文件的路径写到PKG_CONFIG_PATH环境变量里。
+
+```bash
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/...
+export PKG_CONFIG_PATH
+```
+
+# 如何自己写pkg-config的pc文件
+
+Name: 该模块的名字，比如你的pc名字是xxxx.pc，那么名字最好也是xxxx。
+
+Version: 版本号。
+
+Description: 模块的简单描述。上文pkg-config –list-all命令出来的结果，每个名字后面就是description。
+
+Cflags: pkg-config的参数–cflags指向这里。主要用于写本模块的头文件的路径。
+
+Libs: pkg-config的参数–libs指向这里。主要用于写本模块的库/依赖库的路径。
+
+
+
+Libs.private: 本模块依赖的库，但不需要第三方知道。
+
+Requires: 该模块有木有依赖于其他模块。一般没有。
+
+Requires.private: 该模块有木有依赖于其他模块，并且还不需要第三方知道的。一般也没有。
+
+URL: 用户可以通过该URL获得更多信息，或者下载信息。也是辅助的，可要可不要。
+
+Conflicts: 有没有和别的模块冲突。常用于版本冲突。比如，Conflicts: bar < 1.2.3，表示和bar模块的1.2.3以下的版本有冲突。
+
+其实必须写的只有5个。Name、Description、Version、Cflags、Libs。
+
+## 静态库 / 动态库 的pc文件编写
+
+https://blog.csdn.net/newchenxf/article/details/51750239#t7

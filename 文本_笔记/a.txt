@@ -1,0 +1,1 @@
+ffmpeg -i j.jpg -vf "delogo=x=1636:y=932:w=240:h=125:show=0" -c:a copy out2.jpg

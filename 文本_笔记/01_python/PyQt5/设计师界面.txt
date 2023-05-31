@@ -1,0 +1,18 @@
+# 环境搭建
+
+```
+pip install PyQt5
+pip install pyqt5_tools
+# 下载后 搜索designer.exe 即可找到
+# 我的路径为 
+#C:\Users\sunxinyang\AppData\Local\Programs\Python\Python39\Lib\site-packages\qt5_applications\Qt\bin
+```
+
+# 将`.ui`文件  ->  `.py`
+
+```bash
+pyuic5 test.ui -o test.py
+# 或者
+python3 -m PyQt5.uic.pyuic test.ui -o test.py
+```
+

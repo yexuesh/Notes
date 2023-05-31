@@ -1,0 +1,5 @@
+1.opacity值:	
+	inherit 继承
+	initial 初始化
+	revert 还原
+	unset 未设置

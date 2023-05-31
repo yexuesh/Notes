@@ -1,0 +1,9 @@
+1.dirver.maximize_window() 放大窗口
+2.
+selenium 提供switch_to_alert()方法定位到 alert/confirm/prompt对话框。
+使用 text/accept/dismiss/send_keys 进行操作，send_keys只能对prompt进行操作。
+switch_to.alert() 　　# 定位弹出对话
+text() 　　           # 获取对话框文本值
+accept()              # 相当于点击"确认"
+dismiss()             # 相当于点击"取消"
+send_keys()           # 输入值

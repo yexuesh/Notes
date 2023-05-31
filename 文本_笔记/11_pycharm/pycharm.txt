@@ -1,0 +1,1 @@
+1.设置开头: setting/Editor/File and Code Templates

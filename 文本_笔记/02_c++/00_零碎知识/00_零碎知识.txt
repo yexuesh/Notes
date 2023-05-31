@@ -1,0 +1,53 @@
+ /*  
+    运行程序的几种方式
+    1. 在 VS 中 
+        F7 进行编译，Ctrl + F5 运行
+    2. 在命令行中
+        cd /d (加上程序路径)
+    3. 双击运行
+        代码后面要加上一行 getchar():    
+
+ */
+一 ：
+    1. 注释 (1) // 这是注释 
+          （2） /*
+                 这也是注释
+                   */
+    2. 定义变量 int a = 10; // 语法： 数据类型 变量名 = 初始值；
+               int b;  // 也可  数据类型 变量名；
+    3. 整形 
+        short（短整型） 2字节                                    （-2^15~2^15-1）
+        int (整型）     4字节                                    （-2^31~2^31-1)
+        long (长整型)   Window4字节,Linux(32位）4字节，64位）8字节 （-2^31~2^31-1)           
+        long long（长长整形） 8字节                               （-2^63~2^63-1)
+    4. 浮点数（小数）
+       float    4字节     7  位有效数字
+       double   8字节   15~16位有效数字
+    //5. printf 打印 printf("");
+    //6. scanf  扫描 scanf("%d",&a);
+    7.   
+二 ： 
+    1. 定义变量 int a = 10; // 语法： 数据类型 变量名 = 初始值；
+               int b;  // 也可  数据类型 变量名；
+    2. sizeof (关键字） 统计数据类型所占的内存大小
+       sizeof( 数据类型/变量 ）sizeof(int) sizeof(a)
+    3. printf 打印 
+    　　（１）printf("Holle World \n");           
+    　　（２）printf(＂a: %d\n",2);
+    　　（３）printf("a:%d,b:%d\n",a,b);
+
+   　4. scanf＿s（scanf） 扫描 
+    　　scanf_s("%d",&a);
+    
+    ５. 　int a;
+    	　　scanf_s("%d",&a);
+    	　　printf("%d",a);
+    	　　return 0;
+    
+     6. 
+	　　int ａ;
+	　　double ｂ;
+	　　printf("整数，小数: \n");
+	　　scanf_s("%d,%lf",&a,&ｂ);
+	　　printf(" %d,%.2lf \n",a,ｂ);
+                             

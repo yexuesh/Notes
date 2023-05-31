@@ -1,0 +1,5 @@
+```sh
+cd /home/sxy/.local/lib/python3.9/site-packages/cv2/data
+sudo cp cv2.abi3.so ..
+```
+

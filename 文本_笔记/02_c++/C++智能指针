@@ -1,0 +1,8 @@
+```c++
+#include <memory>
+
+auto_ptr<int> aaa(new int);
+unique_ptr<int> aaa(new int);
+share_ptr<int> aaa(new int);
+```
+

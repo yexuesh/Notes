@@ -1,0 +1,13 @@
+```c#
+// 修改SimpleActivatorMenu脚本
+public GUIText camSwitchButton;
+↓
+public UnityEngine.UI.Text camSwitchButton;
+
+// 修改ForcedReset脚本
+using UnityEngine.UI;	//追加
+
+//[RequireComponent(typeof (GUITexture))]
+[RequireComponent(typeof(Image))]		//改
+```
+

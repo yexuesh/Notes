@@ -1,0 +1,45 @@
+# 一. 环境配置
+
+环境配置分为:
+
+1. Splash 服务安装( Docker )  ( 如果Docker 未安装则需要配置Docker )
+2. Scrapy-Splash 的py库安装( pip )
+
+## 1. Docker
+
+1. 下载官网: https://docs.docker.com/desktop/install/windows-install/
+2. 安装包链接: https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
+3. xpath: /html/body/div[2]/div/div/div/main/section/blockquote[2]/p[2]/a
+4. 本地安装包: [Docker Desktop Installer.exe](D:\HOME\文本\文本_笔记\21_python_spider\Splash\Docker Desktop Installer.exe)
+
+```bash
+cd "C:\Program Files\Docker\Docker"
+./DockerCli.exe -SwitchDaemon
+./DockerCli.exe -SwitchLinuxEngine
+
+# 重启Docker服务
+net stop com.docker.service
+net start com.docker.service
+```
+
+
+
+## Ubuntu 环境下安装Docker
+
+https://zhuanlan.zhihu.com/p/143156163
+
+## 2. Splash
+
+```bash
+docker run -p 8050:8050 scrapinghub/splash
+docker run -d -p 8050:8050 scrapinghub/splash  # 安装在远程服务器上以守护状态运行
+# 多了 -d 中断远程服务器连接后，不会终止Splash服务的运行
+```
+
+此时打开 http://localhost:8050 即可
+
+## 3. Scrapy-Splash
+
+```bash
+pip3 install scrapy-splash
+```

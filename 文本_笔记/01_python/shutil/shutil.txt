@@ -1,0 +1,23 @@
+shutil.move(src, dst, copy_function=copy2) 
+
+将一个文件或目录 (src) 移至另一位置 (dst) 并返回目标位置
+
+（递归地将一个文件或目录 (src) 移至另一位置 (dst) 并返回目标位置。
+
+如果目标是已存在的目录，则 src 会被移至该目录下。 
+如果目标已存在但不是目录，它可能会被覆盖，具体取决于 os.rename() 的语义。
+
+如果目标是在当前文件系统中，则会使用 os.rename()。 
+在其他情况下，src 将被拷贝至 dst，使用的函数为 copy_function，然后目标会被移除。
+对于符号链接，则将在 dst 之下或以其本身为名称创建一个指向 src 目标的新符号链接，
+并且 src 将被移除。
+
+如果给出了 copy_function，则它必须为接受两个参数 src 和 dst 的可调用对象，
+并将在 os.rename() 无法使用时被用来将 src 拷贝到 dst。
+ 如果源是一个目录，则会调用 copytree()，并向它传入 copy_function()。
+
+ 默认的 copy_function 是 copy2()。 
+ 使用 copy() 作为 copy_function 允许在无法附带拷贝元数据时让移动操作成功执行，
+ 但其代价是不拷贝任何元数据。
+
+引发一个 审计事件 shutil.move 附带参数 src, dst。）
