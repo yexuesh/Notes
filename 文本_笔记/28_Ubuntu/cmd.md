@@ -14,7 +14,8 @@ sudo vim /etc/systemd/system/clash.service
 ```
 
 ```properties
-[Unit]  # 描述该服务的基本信息，如服务的名称、描述、启动顺序等。
+# 描述该服务的基本信息，如服务的名称、描述、启动顺序等。
+[Unit]
 Description=clash service
 After=network.target
 # After=network.target: 依赖于 network.target，意味着它将在网络服务启动后启动
