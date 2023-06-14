@@ -21,9 +21,9 @@ After=network.target
 # After=network.target: 依赖于 network.target，意味着它将在网络服务启动后启动
 
 [Service]
-ExecStart=/usr/bin/clash -d /home/xiaxinkai/.config/clash/  
+ExecStart=/home/sxy/clash-Linux/clash -d /home/sxy/clash-Linux/  
 # ExecStart: 服务的具体行为
- 
+
 [Install]
 WantedBy=multi-user.target 
 # WantedBy: 该服务应该被安装在 multi-user.target 中
