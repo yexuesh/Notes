@@ -12,6 +12,8 @@
 
 插件: *darcual*
 
+Ayu
+
 ## 字体
 
 下载地址: https://www.jetbrains.com/lp/mono/
