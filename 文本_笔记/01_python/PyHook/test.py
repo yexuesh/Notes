@@ -27,6 +27,10 @@ def onMouseEvent(event):
 
 def onKeyboardEvent(event):
     # 监听键盘事件
+    # 检测 Ctrl+C 组合键
+    if event.Key == "C" and event.Alt and event.Control:
+        print("Ctrl+C 组合键被按下")
+    
     print("MessageName:", event.MessageName)
     print("Message:", event.Message)
     print("Key:", event.Key)
