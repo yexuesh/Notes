@@ -9,8 +9,7 @@ https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
 # 如果还不可以的话
 pip install wheel
-pip install pywin32    # import win32
-pip install pythoncom  # import pythoncom
+pip install pywin32    # import win32 \n import pythoncom
 
 ```
 
