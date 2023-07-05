@@ -1707,3 +1707,18 @@ QRegularExpression::MatchOption toMatchOption(int options);
 QRegularExpression::PatternOption toPatternOption(int options);
 ```
 
+# QCheckBox
+
+## 多选框互斥
+
+```python
+from PyQt5.QtWidgets import QButtonGroup
+
+self.isVideo = QCheckBox(self)
+self.isAutoPlay = QCheckBox(self)
+
+self.box_check_group = QButtonGroup()
+self.box_check_group.setExclusive(True)
+self.box_check_group.addButton(self.isVideo)
+self.box_check_group.addButton(self.isAnime)
+```
