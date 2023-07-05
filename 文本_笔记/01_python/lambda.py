@@ -1,0 +1,1 @@
+button1.clicked.connect(lambda: self.on_button(1)
