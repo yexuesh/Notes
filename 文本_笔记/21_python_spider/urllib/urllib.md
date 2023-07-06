@@ -5,6 +5,7 @@
 ```
 urlparse(url : str)
 # 解析出 协议，域名，...
+ParseResult(scheme='协议', netloc='域名', path='路径', params='参数', query='查询条件', fragment='锚点')
 ```
 
 
