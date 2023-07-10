@@ -1,4 +1,4 @@
-# install matplotlib by conda
+# install matplotlib
 
 ```sh
 pip install matplotlib
