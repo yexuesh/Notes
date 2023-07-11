@@ -253,6 +253,18 @@ gzip -c demo.c>demo.c.gz
 --strip-components=<number>：从文件名中去除指定数量的路径组件。
 ```
 
+## 11. 查看ip地址
+
+```sh
+ip addr show
+ip a
+
+curl ifconfig.me
+hostname -I
+```
+
+
+
 # 四. 执行.exe文件
 
 ```sh
