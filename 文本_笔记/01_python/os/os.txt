@@ -12,7 +12,7 @@ os.path.split(path) -> ("D:\\1\\2", "3")
 
 # 常用命令
 
-```
+```python
 创建目录（文件夹）：os.mkdir()
 
 创建目录：os.mkdir(directory_name)

@@ -12,3 +12,9 @@ touch ~/.vim/filetype.vim
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/*,/usr/local/etc/nginx/*,/usr/local/etc/nginx/conf.d/* if &ft == '' | setfiletype nginx | endif
 ```
 
+## 配置文件
+
+filename: `~/.vimrc`
+
+显示行号:   `set number`
+
