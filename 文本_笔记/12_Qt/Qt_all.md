@@ -487,6 +487,42 @@ if (jsonError.error != QJsonParseError::NoError && !doc.isNull()) {
 
 # 五. QThread
 
+### 5.1.0 线程同步
+
+https://blog.csdn.net/m0_46577050/article/details/122231627
+
+```c++
+QMutex;
+QMutex::lock();
+
+QMutexLocker locker(&lock);  // 析构函数中自动unlock()
+locker.unlock();
+locker.mutex();
+---
+QReadWriteLock rw_lock;
+rw_lock.lockForWrite();
+
+QWriteLocker;
+QReadWriteLock;
+---
+// 主线程
+mutex.lock();
+Send(&packet);
+condition.wait(&mutex); 
+if (m_receivedPacket)
+    HandlePacket(m_receivedPacket); // 另一线程传来回包
+mutex.unlock();
+
+// 通信线程
+m_receivedPacket = ParsePacket(buffer);  // 将接收的数据解析成包
+mutex.lock();
+condition.wakeAll();
+mutex.unlock();
+
+```
+
+
+
 ### 5.1.1 QThread 类常用 API
 
 ```c++

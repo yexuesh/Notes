@@ -279,3 +279,29 @@ sudo apt-get install wine
 ## 1. $(nproc)
 
 CPU核心数
+
+# 六. 对于动态链接库的探讨
+
+LIBRARY_PATH环境变量用于在***程序编译期间***查找动态链接库时指定查找共享库的路径。
+
+LD_LIBRARY_PATH环境变量用于在***程序加载运行期间***查找动态链接库时指定除了系统默认路径之外的其他路径。
+
+
+
+共享库的寻找和加载是由 /lib/ld.so 实现的。 ld.so 在标准路经(/lib, /usr/lib) 中寻找应用程序用到的共享库。
+
+将非标准路经加入 /etc/ld.so.conf，然后运行 ldconfig 生成 /etc/ld.so.cache。 ld.so 加载共享库的时候，会从 ld.so.cache 查找。
+
+还有一个环境变量：LD_LIBRARY_PATH 来处理非标准路经的共享库。ld.so 加载共享库的时候，也会查找这个变量所设置的路经。
+
+```sh
+ldconfig -v -N  # 列出系统在寻找库时的所有路径
+```
+
+```sh
+vim ld.so.conf  # 文件
+
+cd /etc/ld.so.conf.d  # 路径
+sudo vim new_file.conf
+```
+
