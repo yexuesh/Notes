@@ -301,6 +301,11 @@ ps aux: 显示所有正在运行的进程信息，包括进程ID、CPU使用率�
 top: 动态实时显示系统进程信息，按CPU使用率排序。
 ```
 
+## 13. tree
+
+```sh
+echo "" | sudo tee /etc/apt/sources.list
+```
 
 # 四. 执行.exe文件
 
