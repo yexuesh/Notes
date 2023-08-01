@@ -37,3 +37,7 @@ Help -> Register
 
 Settings->Editor->Color Scheme->C/C++->Commnets -> Line comment
 
+## 设置选择时的背景色
+
+Editor -> Color Scheme -> General ==> Editor -> Selection background
+
