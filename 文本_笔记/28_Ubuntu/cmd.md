@@ -139,6 +139,11 @@ lsb_release -a
 
 ```
 
+```sh
+sudo apt install -y screenfetch
+screenfetch
+```
+
 ## 6. locale 设置本地化信息
 
 ```
