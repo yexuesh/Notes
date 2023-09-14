@@ -312,6 +312,32 @@ top: 动态实时显示系统进程信息，按CPU使用率排序。
 echo "" | sudo tee /etc/apt/sources.list
 ```
 
+## 14. 用户管理
+
+### 创建新用户
+
+```sh
+useradd -d /home/new_user -m sam -s /bin/bash -g new_user_group -G adm,root -c "注释"
+passwd new_user
+
+chown -R new_user:new_user /home/new_user
+```
+
+### 用户具有 sudo 权限
+
+```sh
+sudo visudo
+
+new_user ALL=(ALL:ALL) ALL
+```
+
+### 新用户加入sudo adm组
+
+```sh
+sudo usermod -aG sudo new_user
+sudo usermod -aG adm new_user
+```
+
 # 四. 执行.exe文件
 
 ```sh
