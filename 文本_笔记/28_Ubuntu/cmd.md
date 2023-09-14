@@ -55,7 +55,7 @@ nautilus
 
 ## 2. 打开默认图片管理器
 
-```sh
+```shell
 Xdg-open <filename>
 ```
 
@@ -134,12 +134,12 @@ sudo systemctl status myservice.service  # 查看状态
 
 用于显示当前Linux发行版的信息，包括发行版名称、版本号和发行日期等信息。可以在终端中输入以下命令查看当前系统的LSB版本：
 
-```sh
+```shell
 lsb_release -a
 
 ```
 
-```sh
+```shell
 sudo apt install -y screenfetch
 screenfetch
 ```
@@ -180,7 +180,7 @@ LC_MESSAGES: 消息输出 (通常是翻译)
 
 ## 8. zenity || notify-send 弹出消息框
 
-```sh
+```shell
 zenity --info --text "OpenCV代理替换脚本"
 ```
 
@@ -197,7 +197,7 @@ notify-send -h string:x-canonical-private-synchronous:foo "Hint Notification" "T
 
 ## 9. 定时任务
 
-```sh
+```shell
 crontab -e  # 编辑定时任务
 #每个要运行的任务都必须通过一行定义
 
@@ -217,7 +217,7 @@ grep CRON /var/log/syslog
 
 ### 10.0 解压
 
-```sh
+```shell
 #.tar.gz
 解压: tar -xzvf filename.tar.gz
 压缩: tar -czvf demo.tar.gz demo.c
@@ -240,7 +240,7 @@ gzip -c demo.c>demo.c.gz
 
 ### 10.1 tar
 
-```sh
+```shell
 -c：创建新的归档文件。
 -x：提取归档文件中的文件。
 -f <file>：指定归档文件的名称。
@@ -260,7 +260,7 @@ gzip -c demo.c>demo.c.gz
 
 ## 11. 查看ip地址
 
-```sh
+```shell
 ip addr show
 ip a
 
@@ -272,14 +272,14 @@ hostname -I
 
 ### 查看系统信息
 
-```sh
+```shell
 uname -a  # 显示内核信息，包括内核版本、系统架构等。
 lsb_release -a  # 显示Linux发行版信息，包括发行版名称、版本等。
 cat /etc/os-release  # 查看操作系统的信息，包括发行版名称、版本、ID等。
 ```
 ### 查看系统硬件信息
 
-```sh
+```shell
 lscpu  # 显示CPU信息，包括处理器型号、核心数、线程数等。
 lsblk  # 显示块设备信息，包括磁盘分区、大小等。
 lshw  # 显示硬件信息，包括CPU、内存、显卡、网络适配器等。
@@ -288,52 +288,52 @@ lshw  # 显示硬件信息，包括CPU、内存、显卡、网络适配器等。
 
 ### 查看内存和磁盘信息
 
-```sh
+```shell
 free  # 显示内存使用情况，包括已用、可用、缓存等。
-df -h  # 显示磁盘使用情况，包括磁盘空间、已用、可用等。
+df -hT  # 显示磁盘使用情况，包括磁盘空间、已用、可用等。
 ```
 
 ### 查看网络信息
-```sh
+```shell
 ifconfig: 显示网络接口信息，包括IP地址、MAC地址等。（在较新的Linux发行版中，已经被ifconfig取代）
 ip addr: 显示网络接口信息，包括IP地址、MAC地址等。（新版本的替代命令）
 netstat -tuln: 显示网络连接信息，包括监听的端口等。
 ```
 ### 查看进程信息：
 
-```sh
+```shell
 ps aux: 显示所有正在运行的进程信息，包括进程ID、CPU使用率等。
 top: 动态实时显示系统进程信息，按CPU使用率排序。
 ```
 
 ## 13. tree
 
-```sh
+```shell
 echo "" | sudo tee /etc/apt/sources.list
 ```
 
 ## 14. 用户管理
 
-### 创建新用户
+14.1 ### 创建新用户
 
-```sh
+```shell
 useradd -d /home/new_user -m sam -s /bin/bash -g new_user_group -G adm,root -c "注释"
 passwd new_user
 
 chown -R new_user:new_user /home/new_user
 ```
 
-### 用户具有 sudo 权限
+14.2 ### 用户具有 sudo 权限
 
-```sh
+```shell
 sudo visudo
 
 new_user ALL=(ALL:ALL) ALL
 ```
 
-### 新用户加入sudo adm组
+14.3 ### 新用户加入sudo adm组
 
-```sh
+```shell
 sudo usermod -aG sudo new_user
 sudo usermod -aG adm new_user
 ```
